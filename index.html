@@ -4,287 +4,290 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1769ff">
 <title>Desi Girl Talk</title>
 <style>
-:root{--blue:#1769ff;--dark:#103eaa;--bg:#f3f7ff;--white:#fff;--text:#17223b;--muted:#6d7890;--line:#e5eafa;--green:#13a76b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--text);padding-bottom:82px}
-button,input,select{font:inherit}
-button{cursor:pointer;border:0;border-radius:12px;padding:11px 14px;font-weight:700}
-.primary{background:var(--blue);color:white}
-.secondary{background:#eaf1ff;color:var(--blue)}
-.danger{background:#fff0f0;color:#c62828}
-header{background:linear-gradient(135deg,#1769ff,#7048ff);color:white;padding:18px 16px 22px;border-radius:0 0 25px 25px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.brand{font-size:21px;font-weight:900}
-.coins{background:#ffffff25;border:1px solid #ffffff50;border-radius:20px;padding:9px 12px;white-space:nowrap}
-header p{margin:14px 0 4px;font-size:14px}
-header h2{margin:0;font-size:24px}
-main{padding:14px;max-width:850px;margin:auto}
+body{margin:0;background:#f1f5ff;color:#172554;font-family:Arial,sans-serif}
+header{background:linear-gradient(120deg,#0756d9,#4389ff);color:white;padding:22px 16px;border-radius:0 0 24px 24px}
+header h2{margin:0 0 7px}
+header p{margin:0;font-size:13px}
+.balance{background:white;color:#1745a0;padding:12px;border-radius:13px;margin-top:16px;font-weight:bold}
+nav{display:flex;justify-content:space-around;background:white;padding:12px 2px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #ccd5eb}
+nav button{border:0;background:none;color:#45618e;font-size:12px;font-weight:bold}
+main{padding:14px;max-width:700px;margin:auto}
+h3{margin:18px 0 12px}
+.card{background:white;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 3px 12px #dce4f5}
+.profile{display:flex;align-items:center;gap:12px}
+.avatar{width:58px;height:58px;border-radius:50%;background:#e7efff;display:grid;place-items:center;font-size:32px}
+.info{flex:1}
+.info b{display:block;font-size:16px}
+.small{font-size:12px;color:#71809d;margin-top:5px}
+.rate{color:#0756d9;font-weight:bold;font-size:13px;margin-top:6px}
+button.action,.primary{border:0;border-radius:10px;padding:10px 13px;background:#1260e8;color:white;font-weight:bold;cursor:pointer;margin:3px}
+button.secondary{background:#eaf1ff;color:#1451bd}
+button.danger{background:#ffe8e8;color:#b42318}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccd7eb;border-radius:10px;margin:6px 0 12px;font-size:15px}
 .page{display:none}.page.active{display:block}
-h3{margin:12px 0;font-size:18px}
-.muted{color:var(--muted);font-size:13px}
-.search{width:100%;padding:13px;border:1px solid var(--line);border-radius:13px;background:white;margin:12px 0}
-.filters{display:flex;gap:8px;overflow:auto;padding:3px 0 12px}
-.filters button{white-space:nowrap;background:white;color:var(--text);border:1px solid var(--line)}
-.filters button.active{background:var(--blue);color:white}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card,.panel{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden}
-.avatar{height:150px;display:flex;align-items:center;justify-content:center;font-size:70px;background:linear-gradient(145deg,#e1eaff,#f7e9ff)}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.cardbody{padding:11px}
-.card h3{margin:0 0 5px;font-size:16px}
-.rate{font-size:13px;color:#6140cf;font-weight:800;margin:9px 0}
-.actions{display:flex;gap:6px;flex-wrap:wrap}
-.actions button{flex:1;padding:9px 7px;font-size:12px}
-.panel{padding:14px;margin:12px 0}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.row+.row{margin-top:12px}
-.packs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.pack{border:1px solid var(--line);border-radius:14px;padding:13px;background:#fff;text-align:left}
-.pack b{display:block;font-size:19px;color:var(--blue);margin-bottom:5px}
-.pack span{font-size:13px;color:var(--muted)}
-.gifts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.gift{background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px 4px;text-align:center}
-.gift .emoji{font-size:30px}
-.gift b{display:block;font-size:12px;margin:5px 0}
-.gift small{color:var(--muted)}
-.gift button{padding:8px 5px;width:100%;margin-top:8px;font-size:11px}
-input,select{width:100%;padding:12px;border:1px solid #dce4f5;border-radius:11px;margin:6px 0 12px;background:white}
-label{font-size:13px;font-weight:700}
-.bigbalance{font-size:30px;font-weight:900;color:var(--blue)}
-.nav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 2px max(8px,env(safe-area-inset-bottom))}
-.nav button{background:transparent;color:var(--muted);padding:7px 3px;font-size:11px;flex:1;border-radius:8px}
-.nav button span{display:block;font-size:20px;margin-bottom:3px}
-.nav button.active{color:var(--blue);background:#eef3ff}
-.badge{display:inline-block;background:#e6fff3;color:#07834f;border-radius:20px;padding:4px 8px;font-size:11px}
-.notice{background:#fff8df;border:1px solid #ffe6a3;padding:12px;border-radius:12px;font-size:12px;line-height:1.5}
-.empty{text-align:center;padding:28px;color:var(--muted)}
-hr{border:0;border-top:1px solid var(--line);margin:15px 0}
-footer{text-align:center;color:var(--muted);font-size:11px;padding:15px}
-@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.avatar{height:190px}.packs{grid-template-columns:repeat(3,minmax(0,1fr))}.gifts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pack,.gift{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pack button,.gift button{white-space:nowrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.muted{color:#71809d;font-size:12px}
+footer{text-align:center;padding:20px;color:#77839b;font-size:12px}
+.notice{background:#fff7db;color:#805b00;padding:12px;border-radius:10px;font-size:12px;margin:12px 0}
+#chatMessages{height:220px;overflow:auto;background:#f4f7ff;padding:10px;border-radius:12px;margin-bottom:10px}
+.msg{background:#dceaff;padding:9px;border-radius:12px;margin:6px 0;max-width:85%;width:max-content}
 </style>
 </head>
 <body>
 <header>
- <div class="top">
-  <div class="brand">💙 Desi Girl Talk</div>
-  <div class="coins">🪙 <b id="topCoins">0</b></div>
- </div>
- <p>Connect • Chat • Gift • Enjoy</p>
- <h2 id="welcome">आपका स्वागत है!</h2>
+<h2>💙 Desi Girl Talk</h2>
+<p>Make Friends • Chat • Connect • Enjoy</p>
+<div class="balance">🪙 My Coins: <span id="topCoins">0</span> &nbsp; | &nbsp; ₹ Wallet: <span id="topMoney">0</span></div>
 </header>
 
-<main>
-<section class="page active" id="home">
- <input class="search" id="search" placeholder="🔍 नाम या शहर खोजें..." oninput="renderProfiles()">
- <div class="filters">
-  <button class="active" onclick="setFilter('All',this)">सभी</button>
-  <button onclick="setFilter('Delhi',this)">Delhi</button>
-  <button onclick="setFilter('Mumbai',this)">Mumbai</button>
-  <button onclick="setFilter('Lucknow',this)">Lucknow</button>
-  <button onclick="setFilter('Jaipur',this)">Jaipur</button>
- </div>
- <div class="row"><h3>✨ Discover Profiles</h3><span class="muted">Demo profiles</span></div>
- <div class="grid" id="profiles"></div>
- <div class="notice" style="margin-top:14px">यह डेमो प्रोफाइल सूची है। असली सदस्यों की तस्वीरें और जानकारी उनकी अनुमति से अपलोड करनी होगी।</div>
-</section>
-
-<section class="page" id="messages">
- <h3>💬 Messages</h3>
- <div class="panel">
-  <p><b>Demo Chat</b></p>
-  <p class="muted">किसी प्रोफाइल पर Chat दबाकर बातचीत का डेमो खोलें।</p>
-  <div id="chatBox" style="background:#f5f7fc;border-radius:12px;padding:12px;min-height:90px">अभी कोई बातचीत नहीं है।</div>
-  <input id="chatInput" placeholder="अपना मैसेज लिखें...">
-  <button class="primary" onclick="sendMessage()">Send Message</button>
-  <p class="muted">यह केवल स्थानीय डेमो है, असली मैसेज दूसरे यूजर तक नहीं पहुँचता।</p>
- </div>
-</section>
-
-<section class="page" id="calls">
- <h3>📹 Video Calls</h3>
- <div class="panel">
-  <h3>वीडियो कॉल के नियम</h3>
-  <p>• कॉल से पहले Coins और प्रति मिनट रेट दिखेगी।</p>
-  <p>• पर्याप्त Coins नहीं होंगे तो कॉल शुरू नहीं होगी।</p>
-  <p>• कॉल दोनों सदस्यों की सहमति से ही शुरू होनी चाहिए।</p>
-  <hr>
-  <p class="muted">असली वीडियो कॉल सेवा अभी कनेक्ट नहीं है।</p>
-  <button class="primary" onclick="showPage('home')">प्रोफाइल देखें</button>
- </div>
- <h3>आपकी Demo Call History</h3>
- <div id="callHistory" class="panel muted">अभी कोई कॉल नहीं।</div>
-</section>
-
-<section class="page" id="wallet">
- <h3>👛 My Wallet</h3>
- <div class="panel">
-  <div class="muted">Coin Balance</div>
-  <div class="bigbalance">🪙 <span id="walletCoins">0</span></div>
-  <hr>
-  <div class="row"><span>डेमो डॉलर बैलेंस</span><b>$0.00</b></div>
-  <div class="row"><span>डेमो रुपया बैलेंस</span><b>₹0.00</b></div>
-  <p class="muted">डॉलर/रुपये की वास्तविक कमाई अभी जुड़ी नहीं है।</p>
- </div>
- <h3>💳 Buy Coins</h3>
- <p class="muted">पैक चुनने पर डेमो खरीद की पुष्टि खुलेगी। असली भुगतान नहीं होगा।</p>
- <div class="packs" id="coinPacks"></div>
- <h3>🎁 Gift Store</h3>
- <p class="muted">गिफ्ट चुनें और डेमो में Coins भेजें।</p>
- <div class="filters">
-  <button class="active" onclick="giftFilter('All',this)">सभी Gifts</button>
-  <button onclick="giftFilter('Love',this)">❤️ Love</button>
-  <button onclick="giftFilter('Cute',this)">🧸 Cute</button>
-  <button onclick="giftFilter('Premium',this)">💎 Premium</button>
-  <button onclick="giftFilter('Fun',this)">🎉 Fun</button>
- </div>
- <div class="gifts" id="giftStore"></div>
- <h3>📜 Wallet History</h3>
- <div class="panel" id="walletHistory"><div class="empty">अभी कोई ट्रांजैक्शन नहीं।</div></div>
- <h3>🏦 Withdrawal</h3>
- <div class="panel">
-  <p class="muted">डेमो अनुरोध; बैंक में असली भुगतान नहीं होगा।</p>
-  <label>बैंक अकाउंट धारक का नाम</label><input id="bankName" placeholder="पूरा नाम">
-  <label>निकासी राशि (₹)</label><input id="withdrawAmount" type="number" min="1" placeholder="राशि">
-  <button class="primary" onclick="withdrawRequest()">Withdrawal Request</button>
-  <div id="withdrawStatus" class="muted" style="margin-top:10px"></div>
-  <p class="notice">वास्तविक बैंक विवरण अभी इस डेमो में न डालें। असली निकासी के लिए सुरक्षित सर्वर, सत्यापन और भुगतान प्रदाता जरूरी हैं।</p>
- </div>
-</section>
-
-<section class="page" id="settings">
- <h3>⚙️ Settings & Profile</h3>
- <div class="panel">
-  <label>आपका नाम</label><input id="myName" placeholder="नाम">
-  <label>उम्र (18+)</label><input id="myAge" type="number" min="18" placeholder="उम्र">
-  <label>शहर</label><input id="myCity" placeholder="आपका शहर">
-  <label>आपका अकाउंट</label>
-  <select id="myGender"><option value="Boy">लड़का / Caller</option><option value="Girl">लड़की / Creator</option></select>
-  <button class="primary" onclick="saveProfile()">Save Profile</button>
- </div>
- <div class="panel">
-  <h3>🎥 आपकी Call Rate</h3>
-  <p class="muted">लड़की / Creator अपने डेमो प्रोफाइल की रेट सेट कर सकती है।</p>
-  <label>Coins प्रति मिनट</label>
-  <select id="myRate"><option>20</option><option selected>50</option><option>100</option><option>200</option><option>500</option><option>1000</option></select>
-  <button class="primary" onclick="saveRate()">Save Call Rate</button>
- </div>
- <div class="panel">
-  <h3>🛡️ Safety</h3>
-  <p>• केवल 18+ सदस्य</p>
-  <p>• रिपोर्ट और ब्लॉक के विकल्प डेमो हैं</p>
-  <p>• निजी जानकारी सार्वजनिक न करें</p>
-  <button class="secondary" onclick="reportUser('Demo profile')">Report Demo Profile</button>
-  <button class="danger" onclick="blockUser('Demo profile')">Block Demo Profile</button>
- </div>
- <div class="panel">
-  <h3>🛠️ Admin Panel (Demo)</h3>
-  <p class="muted">यह केवल स्थानीय स्क्रीन है। असली Admin access सर्वर पर सुरक्षित होना चाहिए।</p>
-  <div class="row"><span>Demo Coin Balance</span><b id="adminCoins">0</b></div>
-  <div class="row"><span>Demo Gift / Call Logs</span><b id="adminLogs">0</b></div>
-  <div id="adminHistory" class="muted" style="margin-top:12px"></div>
-  <button class="danger" onclick="resetDemo()">Reset Demo Data</button>
- </div>
- <footer>Desi Girl Talk • Frontend Demo</footer>
-</section>
-</main>
-
-<nav class="nav">
- <button class="active" onclick="showPage('home',this)"><span>🏠</span>Home</button>
- <button onclick="showPage('messages',this)"><span>💬</span>Chat</button>
- <button onclick="showPage('calls',this)"><span>📹</span>Calls</button>
- <button onclick="showPage('wallet',this)"><span>🪙</span>Wallet</button>
- <button onclick="showPage('settings',this)"><span>⚙️</span>Profile</button>
+<nav>
+<button onclick="showPage('home')">🏠 Home</button>
+<button onclick="showPage('chat')">💬 Chat</button>
+<button onclick="showPage('calls')">📹 Calls</button>
+<button onclick="showPage('wallet')">🪙 Wallet</button>
+<button onclick="showPage('profile')">👤 Profile</button>
 </nav>
 
+<main>
+<section id="home" class="page active">
+<h3>🌟 Discover Members</h3>
+<div id="profiles"></div>
+<div class="notice">Demo profiles are sample profiles. Real member accounts and live connections require a secure server.</div>
+</section>
+
+<section id="chat" class="page">
+<h3>💬 Chat</h3>
+<div class="card">
+<label>Select member</label>
+<select id="chatPerson">
+<option>Priya</option><option>Neha</option><option>Anjali</option><option>Pooja</option><option>Riya</option>
+</select>
+<div id="chatMessages"><div class="muted">Your demo messages will appear here.</div></div>
+<input id="chatInput" placeholder="अपना मैसेज लिखें...">
+<button class="primary" onclick="sendMessage()">Send Message</button>
+</div>
+<div class="notice">यह केवल इसी डिवाइस पर चलने वाला चैट डेमो है। असली चैट के लिए सर्वर जरूरी है।</div>
+</section>
+
+<section id="calls" class="page">
+<h3>📹 Video Calls</h3>
+<div class="card">
+<p>किसी सदस्य की प्रोफाइल पर जाकर Video Call दबाएँ।</p>
+<p class="muted">कॉल शुरू करने से पहले Coins और रेट दिखाए जाएँगे।</p>
+</div>
+<div class="notice">यह डेमो असली वीडियो कॉल नहीं करता और Coins की वास्तविक कटौती नहीं करता।</div>
+</section>
+
+<section id="wallet" class="page">
+<h3>🪙 Buy Coins</h3>
+<div class="card">
+<p>आपके Coins: <b id="walletCoins">0</b></p>
+<p>Wallet Balance: ₹<b id="walletMoney">0</b></p>
+</div>
+<div id="packs"></div>
+<h3>🎁 Gift Store</h3>
+<div id="gifts"></div>
+<h3>💸 Withdrawal</h3>
+<div class="card">
+<p class="muted">वास्तविक निकासी के लिए KYC और सुरक्षित भुगतान सिस्टम जरूरी है।</p>
+<input id="withdrawAmount" type="number" placeholder="Withdrawal amount ₹">
+<button class="primary" onclick="withdraw()">Request Withdrawal (Demo)</button>
+<div id="withdrawStatus" class="small"></div>
+</div>
+</section>
+
+<section id="profile" class="page">
+<h3>👤 My Profile</h3>
+<div class="card">
+<label>Your Name</label><input id="myName" placeholder="अपना नाम">
+<label>Age (18+)</label><input id="myAge" type="number" min="18" placeholder="Age">
+<label>City</label><input id="myCity" placeholder="Your city">
+<label>Gender</label>
+<select id="myGender"><option value="Male">Male</option><option value="Female">Female</option></select>
+<label>Video Call Rate (Coins/minute)</label>
+<input id="myRate" type="number" min="1" value="50">
+<button class="primary" onclick="saveProfile()">Save Profile</button>
+<p id="profileStatus" class="small"></p>
+</div>
+<h3>⚙️ Account & Safety</h3>
+<div class="card">
+<button class="secondary action" onclick="alert('Demo: Privacy settings')">Privacy</button>
+<button class="secondary action" onclick="alert('Demo: Blocked members')">Blocked Members</button>
+<button class="danger action" onclick="logout()">Reset Demo Data</button>
+</div>
+</section>
+
+<footer>Desi Girl Talk • 18+ Only • Demo Version</footer>
+</main>
+
 <script>
-const PACKS=[
- {price:100,coins:5000},{price:120,coins:7000},
- {price:150,coins:9000},{price:200,coins:14000},
- {price:500,coins:30000},{price:1000,coins:70000}
+const defaultData={
+coins:0,money:0,following:[],name:"",age:"",city:"",gender:"Male",rate:50,
+messages:[],withdrawals:[],giftTarget:""
+};
+let data;
+try{data={...defaultData,...JSON.parse(localStorage.getItem("dgt_demo_v1")||"{}")}}
+catch(e){data={...defaultData}}
+
+const members=[
+{name:"Priya",age:22,city:"Delhi",emoji:"👩🏻",rate:50},
+{name:"Neha",age:24,city:"Noida",emoji:"👩🏼",rate:60},
+{name:"Anjali",age:21,city:"Jaipur",emoji:"👩🏻",rate:40},
+{name:"Pooja",age:23,city:"Mumbai",emoji:"👩🏽",rate:70},
+{name:"Aman",age:25,city:"Delhi",emoji:"👨🏻",rate:40},
+{name:"Riya",age:22,city:"Lucknow",emoji:"👩🏼",rate:50},
+{name:"Simran",age:24,city:"Chandigarh",emoji:"👩🏽",rate:80},
+{name:"Karan",age:26,city:"Noida",emoji:"👨🏻",rate:50}
 ];
-const GIFTS=[
- {e:"🌹",n:"Rose",c:100,k:"Love"},{e:"🌷",n:"Tulip",c:150,k:"Love"},
- {e:"🌻",n:"Sunflower",c:200,k:"Love"},{e:"💐",n:"Bouquet",c:500,k:"Love"},
- {e:"❤️",n:"Heart",c:200,k:"Love"},{e:"💖",n:"Shining Heart",c:500,k:"Love"},
- {e:"🧸",n:"Teddy Bear",c:500,k:"Cute"},{e:"🐼",n:"Panda",c:700,k:"Cute"},
- {e:"🐰",n:"Rabbit",c:600,k:"Cute"},{e:"🐱",n:"Cute Cat",c:400,k:"Cute"},
- {e:"🐶",n:"Puppy",c:450,k:"Cute"},{e:"🎀",n:"Pink Ribbon",c:250,k:"Cute"},
- {e:"💎",n:"Diamond",c:1000,k:"Premium"},{e:"👑",n:"Royal Crown",c:2500,k:"Premium"},
- {e:"💍",n:"Diamond Ring",c:3000,k:"Premium"},{e:"🚗",n:"Luxury Car",c:5000,k:"Premium"},
- {e:"🏎️",n:"Supercar",c:10000,k:"Premium"},{e:"🏰",n:"Dream Castle",c:25000,k:"Premium"},
- {e:"🎂",n:"Birthday Cake",c:800,k:"Fun"},{e:"🍫",n:"Chocolate",c:150,k:"Fun"},
- {e:"🍓",n:"Strawberry",c:100,k:"Fun"},{e:"🌈",n:"Rainbow",c:1200,k:"Fun"},
- {e:"🦋",n:"Butterfly",c:300,k:"Fun"},{e:"🎈",n:"Balloons",c:350,k:"Fun"},
- {e:"🎁",n:"Surprise Box",c:600,k:"Fun"},{e:"🌙",n:"Moon",c:900,k:"Fun"},
- {e:"⭐",n:"Shining Star",c:400,k:"Fun"}
+
+const packs=[
+[100,5000],[120,7000],[150,9000],
+[200,14000],[500,30000],[1000,70000]
 ];
-const PEOPLE=[
- {id:1,n:"Priya",age:24,city:"Delhi",e:"👩🏻",rate:50,online:true},
- {id:2,n:"Neha",age:23,city:"Mumbai",e:"👩🏼",rate:100,online:true},
- {id:3,n:"Anjali",age:25,city:"Lucknow",e:"👩🏽",rate:50,online:false},
- {id:4,n:"Pooja",age:22,city:"Jaipur",e:"👩🏻",rate:20,online:true},
- {id:5,n:"Aman",age:26,city:"Delhi",e:"👨🏻",rate:50,online:true},
- {id:6,n:"Riya",age:24,city:"Mumbai",e:"👩🏾",rate:200,online:true},
- {id:7,n:"Simran",age:23,city:"Jaipur",e:"👩🏼",rate:100,online:false},
- {id:8,n:"Karan",age:27,city:"Lucknow",e:"👨🏽",rate:50,online:true}
+
+const gifts=[
+["🌹","Rose",100],["🌷","Tulip",150],["🌻","Sunflower",200],
+["💐","Bouquet",500],["❤️","Heart",200],["💖","Shining Heart",500],
+["🧸","Teddy Bear",500],["🐼","Panda",700],["🐰","Rabbit",600],
+["🐱","Cute Cat",400],["🐶","Puppy",450],["🎀","Pink Ribbon",250],
+["💎","Diamond",1000],["👑","Royal Crown",2500],
+["💍","Diamond Ring",3000],["🚗","Luxury Car",5000],
+["🏎️","Supercar",10000],["🏰","Dream Castle",25000],
+["🎂","Birthday Cake",800],["🍫","Chocolate",150],
+["🍓","Strawberry",100],["🌈","Rainbow",1200],
+["🦋","Butterfly",300],["🎈","Balloons",350],
+["🎁","Surprise Box",600],["🌙","Moon",900],["⭐","Shining Star",400]
 ];
-const $=id=>document.getElementById(id);
-let data={coins:0,profile:null,rate:50,filter:"All",giftFilter:"All",following:[],history:[],logs:[],calls:[],blocked:[],reports:[]};
-try{const saved=localStorage.getItem("dgt_demo_v1");if(saved)data={...data,...JSON.parse(saved)}}catch(e){}
-function persist(){try{localStorage.setItem("dgt_demo_v1",JSON.stringify(data))}catch(e){}renderBalances();renderHistory();renderAdmin()}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function showPage(id,btn){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");else{const index=["home","messages","calls","wallet","settings"].indexOf(id);document.querySelectorAll(".nav button")[index]?.classList.add("active")}window.scrollTo(0,0)}
-function setFilter(f,btn){data.filter=f;document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");renderProfiles()}
+
+function save(){localStorage.setItem("dgt_demo_v1",JSON.stringify(data));renderBalances()}
+function renderBalances(){
+document.getElementById("topCoins").textContent=data.coins;
+document.getElementById("topMoney").textContent=data.money;
+document.getElementById("walletCoins").textContent=data.coins;
+document.getElementById("walletMoney").textContent=data.money;
+}
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
 function renderProfiles(){
- const q=$("search").value.toLowerCase();
- const list=PEOPLE.filter(p=>(data.filter==="All"||p.city===data.filter)&&!data.blocked.includes(p.n)&&(p.n.toLowerCase().includes(q)||p.city.toLowerCase().includes(q)));
- $("profiles").innerHTML=list.map(p=>`<article class="card">
- <div class="avatar">${p.e}</div><div class="cardbody">
- <div class="row"><h3>${p.n}, ${p.age}</h3><span class="badge">${p.online?"Online":"Offline"}</span></div>
- <div class="muted">📍 ${p.city}</div>
- <div class="rate">🪙 ${p.rate} Coins / Minute</div>
- <div class="actions">
- <button class="secondary" onclick="followUser(${p.id})">${data.following.includes(p.id)?"Following ✓":"＋ Follow"}</button>
- <button class="secondary" onclick="openChat('${p.n}')">💬 Chat</button>
- </div>
- <div class="actions" style="margin-top:6px">
- <button class="primary" onclick="callUser(${p.id})">📹 Call</button>
- <button class="secondary" onclick="openGift(${p.id})">🎁 Gift</button>
- </div>
- <div class="actions" style="margin-top:6px">
- <button class="secondary" onclick="reportUser('${p.n}')">Report</button>
- <button class="secondary" onclick="blockUser('${p.n}')">Block</button>
- </div></div></article>`).join("")||'<div class="empty">कोई प्रोफाइल नहीं मिली।</div>';
+document.getElementById("profiles").innerHTML=members.map((m,i)=>`
+<div class="card">
+<div class="profile">
+<div class="avatar">${m.emoji}</div>
+<div class="info"><b>${m.name} ${m.age>=18?"✔":""}</b>
+<div class="small">${m.age} years • ${m.city}</div>
+<div class="rate">📹 ${m.rate} Coins / minute</div></div>
+</div>
+<div style="margin-top:12px">
+<button class="action secondary" onclick="follow(${i})">${data.following.includes(m.name)?"Following ✓":"＋ Follow"}</button>
+<button class="action" onclick="openChat('${m.name}')">💬 Chat</button>
+<button class="action" onclick="callMember(${i})">📹 Video Call</button>
+<button class="action secondary" onclick="sendGift('${m.name}')">🎁 Gift</button>
+<button class="action danger" onclick="report('${m.name}')">Report / Block</button>
+</div></div>`).join("");
 }
-function followUser(id){if(data.following.includes(id))data.following=data.following.filter(x=>x!==id);else data.following.push(id);persist();renderProfiles();alert(data.following.includes(id)?"अब आप इस प्रोफाइल को Follow कर रहे हैं।":"Unfollow हो गया।")}
-function openChat(name){data.chatName=name;$("chatBox").innerHTML=`<b>${esc(name)} के साथ Demo Chat</b><p class="muted">असली मैसेजिंग अभी कनेक्ट नहीं है।</p>`;showPage("messages");}
-function sendMessage(){const t=$("chatInput").value.trim();if(!t)return;const div=document.createElement("p");div.textContent="आप: "+t;$("chatBox").appendChild(div);$("chatInput").value="";alert("Demo message केवल इस डिवाइस पर दिखा है; दूसरे सदस्य को नहीं भेजा गया।")}
-function callUser(id){
- const p=PEOPLE.find(x=>x.id===id);if(!p)return;
- if(!data.profile||Number(data.profile.age)<18){alert("पहले Settings में अपनी 18+ प्रोफाइल सेव करें।");showPage("settings");return}
- if(data.coins<p.rate){alert(`${p.n} की कॉल रेट ${p.rate} Coins/मिनट है। आपके पास ${data.coins} Coins हैं। पहले Coins खरीदें।`);showPage("wallet");return}
- if(!confirm(`${p.n} की रेट ${p.rate} Coins/मिनट है। यह केवल डेमो है; असली वीडियो कॉल उपलब्ध नहीं। आगे बढ़ें?`))return;
- data.calls.unshift(`${p.n} की Demo Call कोशिश — ${p.rate} Coins/min`);data.logs.unshift("Demo call: "+p.n);$("callHistory").textContent=data.calls.join(" • ");persist();alert("यह केवल डेमो है। असली वीडियो कॉल और वास्तविक Coins कटौती अभी चालू नहीं हैं।");
+function follow(i){
+let n=members[i].name;
+data.following.includes(n)?data.following=data.following.filter(x=>x!==n):data.following.push(n);
+save();renderProfiles();
 }
-function renderPacks(){$("coinPacks").innerHTML=PACKS.map(p=>`<button class="pack" onclick="buyCoins(${p.price},${p.coins})"><b>₹${p.price}</b><strong>🪙 ${p.coins.toLocaleString("en-IN")}</strong><br><span>Demo pack • खरीदें</span></button>`).join("")}
-function buyCoins(price,coins){if(!confirm(`₹${price} में ${coins.toLocaleString("en-IN")} Coins का डेमो पैक चुनें? कोई असली भुगतान नहीं होगा।`))return;alert("Demo में असली भुगतान नहीं किया जाएगा, इसलिए Coins नहीं जोड़े गए। वास्तविक खरीद के लिए Payment Gateway और Server जरूरी हैं।")}
-function giftFilter(k,btn){data.giftFilter=k;document.querySelectorAll("#wallet .filters button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");renderGifts()}
-function renderGifts(){$("giftStore").innerHTML=GIFTS.filter(g=>data.giftFilter==="All"||g.k===data.giftFilter).map((g,i)=>`<div class="gift"><div class="emoji">${g.e}</div><b>${g.n}</b><small>🪙 ${g.c.toLocaleString("en-IN")}</small><button class="primary" onclick="sendGift(${GIFTS.indexOf(g)})">Send Gift</button></div>`).join("")}
-function openGift(id){const p=PEOPLE.find(x=>x.id===id);data.giftTarget=p?.n||"Member";data.giftFilter="All";renderGifts();showPage("wallet");setTimeout(()=>document.getElementById("giftStore").scrollIntoView({behavior:"smooth",block:"start"}),100)}
-function sendGift(i){const g=GIFTS[i];const target=data.giftTarget;if(!target){alert("पहले किसी प्रोफाइल पर Gift बटन दबाएँ।");showPage("home");return}if(data.coins<g.c){alert(`${g.n} के लिए ${g.c} Coins चाहिए। आपके पास ${data.coins} हैं। पहले Coins खरीदें।`);return}if(!confirm(`${target} को ${g.e} ${g.n} (${g.c} Coins) भेजने का डेमो करें?`))return;alert("असली Coins अभी नहीं काटे गए और Gift किसी दूसरे यूजर को नहीं पहुँचा। इसके लिए सुरक्षित सर्वर चाहिए।")}
-function saveProfile(){const name=$("myName").value.trim(),age=Number($("myAge").value),city=$("myCity").value.trim(),gender=$("myGender").value;if(!name||!city||age<18){alert("नाम, शहर और 18 या उससे अधिक उम्र दर्ज करें।");return}data.profile={name,age,city,gender};$("welcome").textContent="नमस्ते, "+name+"!";persist();alert("Demo profile इस डिवाइस पर सेव हुई।")}
-function saveRate(){if(!data.profile||data.profile.gender!=="Girl"){alert("Demo Call Rate सेट करने के लिए प्रोफाइल में लड़की / Creator चुनें और सेव करें।");return}data.rate=Number($("myRate").value);alert(`आपकी Demo Rate ${data.rate} Coins/min सेव हुई। असली प्रोफाइल पर दिखाने के लिए Server जरूरी है।`);persist()}
-function reportUser(n){if(!confirm(n+" को रिपोर्ट करना चाहते हैं? (Demo)"))return;data.reports.push(n);data.logs.unshift("Demo report: "+n);persist();alert("Demo report इस डिवाइस पर सेव हुई। कोई Admin notification नहीं भेजा गया।")}
-function blockUser(n){if(!confirm(n+" को Block करना चाहते हैं?"))return;data.blocked.push(n);data.logs.unshift("Demo block: "+n);persist();renderProfiles();alert("इस डिवाइस के डेमो में प्रोफाइल छिपाई गई।")}
-function withdrawRequest(){const name=$("bankName").value.trim(),amount=Number($("withdrawAmount").value);if(!name||amount<=0){alert("नाम और सही राशि भरें।");return}data.logs.unshift(`Demo withdrawal request ₹${amount} — ${name}`);persist();$("withdrawStatus").textContent="Demo request दर्ज हुई; कोई असली भुगतान नहीं हुआ।";alert("यह केवल डेमो है। वास्तविक निकासी के लिए सर्वर और सत्यापन चाहिए।")}
-function renderBalances(){$("topCoins").textContent=data.coins.toLocaleString("en-IN");$("walletCoins").textContent=data.coins.toLocaleString("en-IN");$("adminCoins").textContent=data.coins.toLocaleString("en-IN")}
-function renderHistory(){$("walletHistory").innerHTML=data.history.length?data.history.map(x=>`<div class="row"><span>${esc(x.text)}</span><b>${esc(x.date)}</b></div>`).join(""):'<div class="empty">अभी कोई ट्रांजैक्शन नहीं।</div>'}
-function renderAdmin(){$("adminLogs").textContent=data.logs.length;$("adminHistory").innerHTML=data.logs.slice(0,10).map(x=>`<p>${esc(x)}</p>`).join("")||"अभी कोई Demo Log नहीं।"}
-function resetDemo(){if(!confirm("इस डिवाइस का Demo Data हटाएँ?"))return;localStorage.removeItem("dgt_demo_v1");location.reload()}
-renderProfiles();renderPacks();renderGifts();persist();
+function openChat(name){
+document.getElementById("chatPerson").value=name;
+showPage("chat");
+}
+function sendMessage(){
+let input=document.getElementById("chatInput");
+if(!input.value.trim())return;
+data.messages.push({to:document.getElementById("chatPerson").value,text:input.value});
+save();input.value="";renderMessages();
+}
+function renderMessages(){
+let person=document.getElementById("chatPerson").value;
+let list=data.messages.filter(m=>m.to===person);
+document.getElementById("chatMessages").innerHTML=list.map(m=>`<div class="msg">${escapeHTML(m.text)}</div>`).join("")||'<div class="muted">No messages yet.</div>';
+}
+document.getElementById("chatPerson").addEventListener("change",renderMessages);
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function callMember(i){
+let m=members[i];
+if(!data.age||Number(data.age)<18){alert("पहले Profile में 18+ age सेट करें।");showPage("profile");return}
+if(data.coins<m.rate){alert("आपके पास पर्याप्त Coins नहीं हैं। Buy Coins करें।");showPage("wallet");return}
+if(confirm(`${m.name} की वीडियो कॉल दर ${m.rate} Coins प्रति मिनट है। क्या आप आगे बढ़ना चाहते हैं?`)){
+alert("यह Demo है। असली वीडियो कॉल और Coins कटौती अभी उपलब्ध नहीं हैं।");
+}
+}
+function sendGift(name){
+data.giftTarget=name;
+showPage("wallet");
+renderGifts();
+alert(name+" के लिए Gift Store खुल गया है।");
+}
+function renderPacks(){
+document.getElementById("packs").innerHTML=packs.map(p=>`
+<div class="card pack"><div><b>₹${p[0]}</b><div class="small">${p[1].toLocaleString("en-IN")} Coins</div></div>
+<button class="action" onclick="buyPack(${p[0]})">Buy Coins</button></div>`).join("");
+}
+function buyPack(price){
+alert("यह Demo है। ₹"+price+" का असली भुगतान नहीं होगा और Coins नहीं जुड़ेंगे।");
+}
+function renderGifts(){
+document.getElementById("gifts").innerHTML=gifts.map((g,i)=>`
+<div class="card gift"><div>${g[0]} <b>${g[1]}</b><div class="small">${g[2].toLocaleString("en-IN")} Coins</div></div>
+<button class="action secondary" onclick="gift(${i})">Send Gift</button></div>`).join("");
+}
+function gift(i){
+let g=gifts[i],target=data.giftTarget;
+if(!target){alert("पहले Home में किसी सदस्य की Gift बटन दबाएँ।");return}
+if(data.coins<g[2]){alert("पर्याप्त Coins नहीं हैं।");return}
+if(confirm(target+" को "+g[1]+" भेजें? कीमत: "+g[2]+" Coins")){
+alert("यह Demo है। असली Coins नहीं कटे और Gift डिलीवर नहीं हुआ।");
+}
+}
+function saveProfile(){
+let age=Number(document.getElementById("myAge").value);
+if(!document.getElementById("myName").value.trim()||age<18||!document.getElementById("myCity").value.trim()){
+alert("नाम, शहर और 18 या उससे अधिक उम्र भरें।");return;
+}
+data.name=document.getElementById("myName").value.trim();
+data.age=age;
+data.city=document.getElementById("myCity").value.trim();
+data.gender=document.getElementById("myGender").value;
+data.rate=Math.max(1,Number(document.getElementById("myRate").value)||50);
+save();
+document.getElementById("profileStatus").textContent="Profile demo में सेव हो गई।";
+}
+function withdraw(){
+let amount=Number(document.getElementById("withdrawAmount").value);
+if(!amount||amount<=0){alert("सही रकम लिखें।");return}
+data.withdrawals.push({amount,status:"Demo request"});
+save();
+document.getElementById("withdrawStatus").textContent="Demo request सेव हुई। असली भुगतान नहीं हुआ।";
+document.getElementById("withdrawAmount").value="";
+}
+function report(name){
+if(confirm(name+" को Report/Block करना चाहते हैं?")){
+alert("Demo: Report/Block सुविधा। सर्वर पर रिपोर्ट नहीं भेजी गई।");
+}
+}
+function logout(){
+if(confirm("सारा Demo data हटाना है?")){
+localStorage.removeItem("dgt_demo_v1");location.reload();
+}
+}
+function loadProfile(){
+document.getElementById("myName").value=data.name;
+document.getElementById("myAge").value=data.age;
+document.getElementById("myCity").value=data.city;
+document.getElementById("myGender").value=data.gender;
+document.getElementById("myRate").value=data.rate;
+}
+renderBalances();renderProfiles();renderPacks();renderGifts();loadProfile();renderMessages();
 </script>
 </body>
 </html>

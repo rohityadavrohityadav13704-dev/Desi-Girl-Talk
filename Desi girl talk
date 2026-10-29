@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#171326">
+<title>Desi Girl Talk</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100e1a;color:#fff;font-family:Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:480px;min-height:100vh;margin:auto;background:#171426;padding-bottom:76px}
+header{padding:22px 18px 14px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:22px;font-weight:800;color:#e7b6ff}
+.brand span{color:#ff83bd}
+.sub{color:#aaa5bd;font-size:12px;margin-top:5px}
+.avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#8e44ec,#ff83bd);display:grid;place-items:center;font-size:23px}
+.page{padding:8px 16px;display:none}
+.page.active{display:block}
+h2{font-size:21px;margin:12px 0}
+h3{font-size:16px;margin:0 0 7px}
+.muted{color:#aaa5bd;font-size:13px}
+.banner{padding:20px;border-radius:22px;background:linear-gradient(135deg,#6b35b5,#b93c88);margin:12px 0 22px}
+.banner h2{margin-top:0}
+.pill{border:0;border-radius:25px;padding:10px 15px;background:#fff;color:#392052;font-weight:bold}
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#211d32;border:1px solid #332b48;border-radius:18px;padding:13px}
+.person{height:95px;border-radius:13px;background:linear-gradient(140deg,#583c81,#e478b2);display:grid;place-items:center;font-size:42px;margin-bottom:12px}
+.online{color:#70e7a1;font-size:11px;margin-bottom:7px}
+.action{width:100%;padding:10px 5px;border:0;border-radius:10px;background:#a65bea;color:white;margin-top:8px;font-weight:bold}
+.secondary{background:#332743}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;display:flex;justify-content:space-around;background:#211d32;border-top:1px solid #383047;padding:10px 3px calc(10px + env(safe-area-inset-bottom));z-index:5}
+nav button{background:none;border:0;color:#aaa5bd;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:5px}
+nav button b{font-size:20px}
+nav button.selected{color:#e4aaff}
+.row{display:flex;align-items:center;gap:12px;background:#211d32;border-radius:15px;padding:14px;margin:10px 0}
+.row .avatar{flex-shrink:0}
+.row .info{flex:1;min-width:0}
+.row button{border:0;background:#a65bea;color:white;border-radius:10px;padding:9px}
+.wallet{padding:23px;border-radius:20px;background:linear-gradient(130deg,#6638ad,#c3448d);margin:15px 0}
+.coins{font-size:30px;font-weight:bold;margin:8px 0}
+.packages{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.setting{padding:17px;background:#211d32;border-radius:13px;margin:9px 0;display:flex;justify-content:space-between}
+input{width:100%;padding:14px;border:1px solid #443752;background:#211d32;color:white;border-radius:12px;margin:8px 0}
+#login{padding:28px 20px;min-height:80vh;display:flex;flex-direction:column;justify-content:center}
+#login .logo{font-size:45px;text-align:center}
+#login h1{text-align:center;color:#e7b6ff}
+#login p{text-align:center;color:#aaa5bd}
+#notice{font-size:13px;color:#ffcf94;line-height:1.5;margin-top:15px}
+</style>
+</head>
+<body>
+<div class="app">
+<section id="login">
+ <div class="logo">💬</div>
+ <h1>Desi Girl Talk</h1>
+ <p>Chat · Voice · Video</p>
+ <h3>Welcome back</h3>
+ <input id="phone" type="tel" placeholder="Mobile number (demo)">
+ <input id="user" placeholder="Your name">
+ <button class="action" onclick="login()">Continue</button>
+ <div id="notice">यह शुरुआती डेमो है। अभी असली OTP या सुरक्षित अकाउंट लॉगिन सक्रिय नहीं है।</div>
+</section>
+
+<div id="main" style="display:none">
+<header>
+ <div><div class="brand">Desi <span>Girl Talk</span></div><div class="sub">Connect • Chat • Talk</div></div>
+ <div class="avatar">💜</div>
+</header>
+
+<section class="page active" id="home">
+ <div class="banner"><div class="muted" style="color:#f6dcff">WELCOME TO DESI GIRL TALK</div><h2>अपनी बातचीत शुरू करें 💜</h2><div>लोगों से जुड़ें और बात करें</div></div>
+ <h2>🟢 Online Profiles</h2>
+ <div class="profiles" id="people"></div>
+ <p class="muted">प्रोफाइल अभी डेमो हैं, असली यूज़र ऑनलाइन नहीं हैं।</p>
+</section>
+
+<section class="page" id="messages">
+ <h2>💬 Messages</h2>
+ <p class="muted">आपकी बातचीत यहाँ दिखेगी।</p>
+ <div id="chats"></div>
+</section>
+
+<section class="page" id="calls">
+ <h2>📞 Calls</h2>
+ <div class="row"><div class="avatar">📹</div><div class="info"><h3>Video Call</h3><div class="muted">वीडियो कॉल सुविधा बाद में जोड़ी जाएगी</div></div></div>
+ <div class="row"><div class="avatar">🎙️</div><div class="info"><h3>Voice Call</h3><div class="muted">वॉइस कॉल सुविधा बाद में जोड़ी जाएगी</div></div></div>
+ <div id="callnotice" class="muted">अभी वास्तविक कॉल कनेक्ट नहीं होती।</div>
+</section>
+
+<section class="page" id="wallet">
+ <h2>👛 My Wallet</h2>
+ <div class="wallet"><div>Demo Points Balance</div><div class="coins" id="balance">100 Points</div><div class="muted" style="color:#f1dfff">डेमो पॉइंट्स की कोई वास्तविक नकद कीमत नहीं है।</div></div>
+ <h3>पॉइंट पैकेज</h3>
+ <div class="packages">
+ <div class="card"><h3>100 Points</h3><p class="muted">Demo package</p><button class="action" onclick="demoBuy(100)">Try Demo</button></div>
+ <div class="card"><h3>500 Points</h3><p class="muted">Demo package</p><button class="action" onclick="demoBuy(500)">Try Demo</button></div>
+ </div>
+ <p class="muted">कोई असली पेमेंट नहीं लिया जाएगा।</p>
+</section>
+
+<section class="page" id="settings">
+ <h2>⚙️ Settings</h2>
+ <div class="row"><div class="avatar">👤</div><div class="info"><h3 id="profileName">My Account</h3><div class="muted">Demo profile</div></div></div>
+ <div class="setting" onclick="alert('यह सुविधा अगले संस्करण में जोड़ी जाएगी।')">👤 Edit Profile <span>›</span></div>
+ <div class="setting" onclick="toggleTheme()">🌙 Dark / Light Mode <span>›</span></div>
+ <div class="setting" onclick="alert('अभी डेमो सेटिंग है।')">🔔 Notifications <span>›</span></div>
+ <div class="setting" onclick="alert('असली चैट जुड़ने पर यह सुविधा सक्रिय होगी।')">💬 Message Settings <span>›</span></div>
+ <div class="setting" onclick="alert('अगले संस्करण में।')">🔒 Privacy & Security <span>›</span></div>
+ <div class="setting" onclick="alert('Help: Desi Girl Talk demo')">❓ Help & Support <span>›</span></div>
+ <button class="action" onclick="logout()">Logout</button>
+</section>
+</div>
+
+<nav id="nav" style="display:none">
+ <button class="selected" onclick="show('home',this)"><b>⌂</b>Home</button>
+ <button onclick="show('messages',this)"><b>▤</b>Messages</button>
+ <button onclick="show('calls',this)"><b>▣</b>Calls</button>
+ <button onclick="show('wallet',this)"><b>◉</b>Wallet</button>
+ <button onclick="show('settings',this)"><b>⚙</b>Settings</button>
+</nav>
+</div>
+
+<script>
+const profiles=[
+ {name:"Priya",emoji:"👩🏻",price:50},
+ {name:"Simran",emoji:"👩🏼",price:100},
+ {name:"Neha",emoji:"👩🏽",price:50},
+ {name:"Pooja",emoji:"👩🏻‍🦰",price:100}
+];
+let points=100;
+const people=document.getElementById("people");
+profiles.forEach((p,i)=>{
+ const c=document.createElement("div");
+ c.className="card";
+ c.innerHTML=`<div class="person">${p.emoji}</div><div class="online">● Demo profile</div><h3>${p.name}</h3><div class="muted">Demo rate: ₹${p.price}/min</div><button class="action" onclick="chat(${i})">Message</button><button class="action secondary" onclick="fakeCall()">Call</button>`;
+ people.appendChild(c);
+});
+function login(){
+ const name=document.getElementById("user").value.trim();
+ const phone=document.getElementById("phone").value.trim();
+ if(!name||!phone){alert("नाम और मोबाइल नंबर भरें।");return;}
+ document.getElementById("profileName").textContent=name;
+ document.getElementById("login").style.display="none";
+ document.getElementById("main").style.display="block";
+ document.getElementById("nav").style.display="flex";
+}
+function logout(){
+ document.getElementById("main").style.display="none";
+ document.getElementById("nav").style.display="none";
+ document.getElementById("login").style.display="flex";
+}
+function show(id,btn){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("selected"));
+ btn.classList.add("selected");
+}
+function chat(i){
+ const p=profiles[i];
+ document.getElementById("chats").innerHTML=`<div class="row"><div class="avatar">${p.emoji}</div><div class="info"><h3>${p.name}</h3><div class="muted">Demo conversation screen</div></div></div><input id="msg" placeholder="Type a demo message"><button class="action" onclick="sendDemo()">Send Demo Message</button><p id="sent" class="muted"></p>`;
+ document.querySelectorAll("nav button")[1].click();
+}
+function sendDemo(){
+ const m=document.getElementById("msg").value.trim();
+ if(m)document.getElementById("sent").textContent="Demo message: "+m+" (यह दूसरे यूज़र को नहीं भेजा गया)।";
+}
+function fakeCall(){alert("यह केवल डेमो है। वास्तविक वॉइस/वीडियो कॉल अभी उपलब्ध नहीं है।");}
+function demoBuy(n){points+=n;document.getElementById("balance").textContent=points+" Points";alert(n+" demo points जोड़े गए। कोई पेमेंट नहीं हुआ।");}
+function toggleTheme(){
+ document.body.style.background=document.body.style.background==="white"?"#100e1a":"#eeeeF5";
+ document.body.style.color=document.body.style.color==="black"?"#fff":"#111";
+ alert("डेमो थीम बदली गई।");
+}
+</script>
+</body>
+</html>

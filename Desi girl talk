@@ -172,8 +172,118 @@ function demoBuy(n){points+=n;document.getElementById("balance").textContent=poi
 function toggleTheme(){
  document.body.style.background=document.body.style.background==="white"?"#100e1a":"#eeeeF5";
  document.body.style.color=document.body.style.color==="black"?"#fff":"#111";
- alert("डेमो थीम बदली गई।");
+ alert("डेमो थीम बदली गई।")
 }
+</script>
+<!-- DESI GIRL TALK LOGIN -->
+<section id="dgt-login" style="background:#101b35;color:white;padding:20px;border-radius:15px;margin:15px;text-align:center;font-family:Arial">
+  <h2>Desi Girl Talk Login</h2>
+
+  <input id="dgt-email" type="email" placeholder="Email address"
+    style="width:90%;padding:12px;margin:7px;border-radius:8px">
+
+  <input id="dgt-password" type="password" placeholder="Password"
+    style="width:90%;padding:12px;margin:7px;border-radius:8px">
+
+  <button onclick="dgtEmailLogin()">Login with Email</button>
+  <button onclick="dgtEmailSignup()">Create Email Account</button>
+
+  <hr>
+
+  <button onclick="dgtGoogleLogin()">Continue with Google</button>
+
+  <hr>
+
+  <input id="dgt-phone" type="tel" placeholder="+91 9876543210"
+    style="width:90%;padding:12px;margin:7px;border-radius:8px">
+
+  <div id="dgt-recaptcha"></div>
+  <button onclick="dgtSendOTP()">Send Mobile OTP</button>
+
+  <input id="dgt-otp" type="text" placeholder="Enter OTP"
+    style="width:90%;padding:12px;margin:7px;border-radius:8px">
+  <button onclick="dgtVerifyOTP()">Verify OTP</button>
+
+  <p id="dgt-message">Please login to continue.</p>
+  <button onclick="dgtLogout()">Logout</button>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCBLTuqb2vKKsJPx6bZdVuhOI57AiRTkH4",
+  authDomain: "desigirltalk.firebaseapp.com",
+  projectId: "desigirltalk",
+  storageBucket: "desigirltalk.firebasestorage.app",
+  messagingSenderId: "357361364318",
+  appId: "1:357361364318:web:b67fbc961276321f3cf3cf",
+  measurementId: "G-M0RF2XB20M"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+function dgtMessage(msg) {
+  document.getElementById("dgt-message").innerText = msg;
+}
+
+function dgtEmailLogin() {
+  auth.signInWithEmailAndPassword(
+    document.getElementById("dgt-email").value,
+    document.getElementById("dgt-password").value
+  ).catch(e => dgtMessage(e.message));
+}
+
+function dgtEmailSignup() {
+  auth.createUserWithEmailAndPassword(
+    document.getElementById("dgt-email").value,
+    document.getElementById("dgt-password").value
+  ).catch(e => dgtMessage(e.message));
+}
+
+function dgtGoogleLogin() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(e => dgtMessage(e.message));
+}
+
+let dgtConfirmation;
+
+function dgtSendOTP() {
+  if (!window.dgtRecaptcha) {
+    window.dgtRecaptcha = new firebase.auth.RecaptchaVerifier(
+      "dgt-recaptcha", { size: "normal" }
+    );
+  }
+
+  auth.signInWithPhoneNumber(
+    document.getElementById("dgt-phone").value,
+    window.dgtRecaptcha
+  ).then(result => {
+    dgtConfirmation = result;
+    dgtMessage("OTP sent. Enter your OTP.");
+  }).catch(e => dgtMessage(e.message));
+}
+
+function dgtVerifyOTP() {
+  if (!dgtConfirmation) {
+    dgtMessage("Please request OTP first.");
+    return;
+  }
+
+  dgtConfirmation.confirm(
+    document.getElementById("dgt-otp").value
+  ).catch(e => dgtMessage(e.message));
+}
+
+function dgtLogout() {
+  auth.signOut().catch(e => dgtMessage(e.message));
+}
+
+auth.onAuthStateChanged(user => {
+  dgtMessage(user ? "Logged in: " + (user.email || user.phoneNumber) : "Please login.");
+});
 </script>
 </body>
 </html>
